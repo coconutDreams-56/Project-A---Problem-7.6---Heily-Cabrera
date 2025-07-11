@@ -13,6 +13,7 @@ Modify Programming Project 7.20.3 so that you first print the lines in the order
 using namespace std;
 
 int main()
+{
 
 char buffer[1000];
 char ch; 
@@ -45,16 +46,16 @@ while (cin.get(ch) && count < sizeof(buffer) - 1)
 
 lines[0] = buffer;
 
-for (int i = 0, i < count, i++)
+for (int i = 0; i < count, i++;)
     {
-    if (buffer[i] == '\0' && i = 1 < count)
+    if (buffer[i] == '\0' && i == 1 < count)
     {
     lines[lineCounter++] = &buffer[i + 1];
     }
     }
 
 cout << "Original Order:\n";
-    for (int i = 0, i < lineCounter, i++)
+    for (int i = 0; i < lineCounter, i++;)
     {
     if (lines[i])
     {
@@ -74,7 +75,7 @@ cout << "Original Order:\n";
         }
     }
 
-cin.rdbuf(cinBuffer);
+cin.rdbuf(cinbuffer);
 
 return 0;
 
