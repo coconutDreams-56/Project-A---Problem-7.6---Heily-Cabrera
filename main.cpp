@@ -7,55 +7,73 @@ Modify Programming Project 7.20.3 so that you first print the lines in the order
 
 #include <iostream>
 #include <stream>
+#include <cstring>
+#include <algorithm>
+
 using namespace std;
 
 int main()
 
 char buffer[1000];
 char ch; 
-char* lines[1000] = {};
+char* lines[1000] = {0};
 char former;
-int lineCounter = 0;
+int lineCounter = 1;
 
 streambuf *cinbuffer = cin.rdbuf();
 ifstream file ("prideandprejudice.txt");
+if (!file)
+{
+    cerr << "couldn't open file" << endl;
+    return 1;
+}
 cin.rdbuf(file.rdbuf());
 
 int count = 0;
-while (cin.get(ch) || count < 1000)
+while (cin.get(ch) && count < sizeof(buffer) - 1)
 {
-    buffer[count] = ch;
-    if (buffer[count] == '/n' )
+    if (ch == '\n' )
     {
-      buffer[count] = '/0';
+      buffer[count++] = '\0';
     }
-    count++;
+    else
+    {
+        buffer[count] = ch;
+    }
+    buffer[count] = '\0';
 }
 
-int charTracker = 0;
-int counter2 = 0;
+lines[0] = buffer;
 
 for (int i = 0, i < count, i++)
-{
-  if (previous == '/0')
-  {
-  lines[lineCounter2] = &buffer[count - charTracker];
-  charTracker 0;
-  lineCounter++;
-  }
-  previous = buffer[i];
-  counter2++;
-  charTracker++;
-}
+    {
+    if (buffer[i] == '\0' && i = 1 < count)
+    {
+    lines[lineCounter++] = &buffer[i + 1];
+    }
+    }
 
-for (int j = lineCounter; j >= 0; j--)
-{ 
-  if(lines[j])
-  {
-    cout << lines[j];
-  }
-  cout << endl;
-}
+cout << "Original Order:\n";
+    for (int i = 0, i < lineCounter, i++)
+    {
+    if (lines[i])
+    {
+    cout << lines[i] << endl;
+    }
+    }
+
+    sort(lines, lines + lineCounter, [](const char* a, const char* b)
+    {
+        return strcmp(a, b) < 0;
+    });
+
+    cout << "\nSorted Order:\n";
+    for (int i = 0; i < lineCounter; ++i) {
+        if (lines[i]) {
+            cout << lines[i] << endl;
+        }
+    }
+
 cin.rdbuf(cinBuffer);
 
 return 0;
