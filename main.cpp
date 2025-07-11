@@ -17,9 +17,9 @@ int main()
 
 char buffer[1000];
 char ch; 
-char* lines[1000] = {0};
+char* lines[1000] = {nullptr};
 char former;
-int lineCounter = 1;
+int lineCounter = 0;
 
 streambuf *cinbuffer = cin.rdbuf();
 ifstream file ("prideandprejudice.txt");
