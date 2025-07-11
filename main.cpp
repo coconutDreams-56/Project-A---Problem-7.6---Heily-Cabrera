@@ -4,6 +4,12 @@ Modify Programming Project 7.20.3 so that you first print the lines in the order
 ***** When you sort the lines, only rearrange the pointers in the lines array. Write a program that reads lines of text and appends them to a char buffer[1000]. */
 
 // Programmer: Heily Cabrera // Tester: Ashley Jacobson
+// Group Project A //
+/***** Members *****/
+/***** Ashley Jacobson *****/
+/***** Giannfranco Brance *****/
+/***** Audrey Tapia *****/
+/***** Heily Cabrera Guerrero *****/
 
 #include <iostream>
 #include <fstream>
@@ -15,14 +21,15 @@ using namespace std;
 int main()
 {
 
-char buffer[1000];
+const int max = 1000;
+const int bufSize = 1000;
+char buffer[bufSize];
 char ch; 
-char* lines[1000] = {nullptr};
-char former;
+char* lines[max] = {0};
 int lineCounter = 0;
 
 streambuf *cinbuffer = cin.rdbuf();
-ifstream file ("prideandprejudice.txt");
+ifstream file ("pap.txt");
 if (!file)
 {
     cerr << "couldn't open file" << endl;
@@ -31,7 +38,7 @@ if (!file)
 cin.rdbuf(file.rdbuf());
 
 int count = 0;
-while (cin.get(ch) && count < sizeof(buffer) - 1)
+while (cin.get(ch) && count < bufSize - 1)
 {
     if (ch == '\n' )
     {
@@ -39,23 +46,25 @@ while (cin.get(ch) && count < sizeof(buffer) - 1)
     }
     else
     {
-        buffer[count] = ch;
+        buffer[count++] = ch;
     }
     buffer[count] = '\0';
 }
 
 lines[0] = buffer;
+lineCounter = 1;
 
-for (int i = 0; i < count, i++;)
+for (int i = 0; i < count; i++)
     {
-    if (buffer[i] == '\0' && i == 1 < count)
+    if (buffer[i] == '\0' && i + 1 < count)
     {
     lines[lineCounter++] = &buffer[i + 1];
+    if (lineCounter >= max) break;
     }
     }
 
 cout << "Original Order:\n";
-    for (int i = 0; i < lineCounter, i++;)
+    for (int i = 0; i < lineCounter; i++)
     {
     if (lines[i])
     {
@@ -80,7 +89,6 @@ cin.rdbuf(cinbuffer);
 return 0;
 
 }
-
 
 
 
