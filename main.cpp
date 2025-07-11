@@ -18,5 +18,51 @@ char former;
 int lineCounter = 0;
 
 streambuf *cinbuffer = cin.rdbuf();
-ifstream file ("input.txt");
+ifstream file ("prideandprejudice.txt");
+cin.rdbuf(file.rdbuf());
+
+int count = 0;
+while (cin.get(ch) || count < 1000)
+{
+    buffer[count] = ch;
+    if (buffer[count] == '/n' )
+    {
+      buffer[count] = '/0';
+    }
+    count++;
+}
+
+int charTracker = 0;
+int counter2 = 0;
+
+for (int i = 0, i < count, i++)
+{
+  if (previous == '/0')
+  {
+  lines[lineCounter2] = &buffer[count - charTracker];
+  charTracker 0;
+  lineCounter++;
+  }
+  previous = buffer[i];
+  counter2++;
+  charTracker++;
+}
+
+for (int j = lineCounter; j >= 0; j--)
+{ 
+  if(lines[j])
+  {
+    cout << lines[j];
+  }
+  cout << endl;
+}
+cin.rdbuf(cinBuffer);
+
+return 0;
+
+}
+
+
+
+
 
